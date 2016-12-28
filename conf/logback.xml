@@ -1,0 +1,28 @@
+<!-- https://www.playframework.com/documentation/latest/SettingsLogger -->
+<configuration>
+
+  <appender name="serviceRollingFileAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>logs/service.log</file>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>logs/service.%d{yyyy-MM-dd, UTC}.log</fileNamePattern>
+      <maxHistory>7</maxHistory>
+    </rollingPolicy>
+    <encoder>
+      <pattern>%date{yyyy/MM/dd'T'HH:mm:ss.SSS, UTC} [%level] %logger:%line - %message%n</pattern>
+      <charset>UTF-8</charset>
+    </encoder>
+  </appender>
+
+  <logger name="controllers" level="DEBUG" />
+
+  <!-- Off these ones as they are annoying, and anyway we manage configuration ourselves -->
+  <logger name="com.avaje.ebean.config.PropertyMapLoader" level="OFF" />
+  <logger name="com.avaje.ebeaninternal.server.core.XmlConfigLoader" level="OFF" />
+  <logger name="com.avaje.ebeaninternal.server.lib.BackgroundThread" level="OFF" />
+  <logger name="com.gargoylesoftware.htmlunit.javascript" level="OFF" />
+
+  <root level="INFO">
+    <appender-ref ref="serviceRollingFileAppender" />
+  </root>
+
+</configuration>
