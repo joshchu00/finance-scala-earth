@@ -13,16 +13,20 @@ import idv.trashchu.finance.crawler.utilities.{FileUtilities, RestfulUtilities}
 import org.apache.kafka.clients.consumer.ConsumerConfig
 import org.apache.kafka.common.TopicPartition
 import org.apache.kafka.common.serialization.{ByteArrayDeserializer, StringDeserializer}
+import org.jsoup.Jsoup
+import org.jsoup.nodes.{Document, Element}
+import org.jsoup.select.Elements
 import play.api.{Configuration, Logger}
 import play.api.libs.ws.WSClient
 
+import scala.concurrent.ExecutionContext
 import scala.concurrent.duration._
 
 /**
   * Created by joshchu999 on 6/8/17.
   */
 @Singleton
-class ProcessorService @Inject()(configuration: Configuration, implicit val system: ActorSystem) {
+class ProcessorService @Inject()(configuration: Configuration, implicit val system: ActorSystem, implicit val ec: ExecutionContext) {
 
   val logger: Logger = Logger(this.getClass())
 
@@ -36,10 +40,48 @@ class ProcessorService @Inject()(configuration: Configuration, implicit val syst
   implicit val materializer = ActorMaterializer()
 
   Consumer.committableSource(consumerSettings, Subscriptions.topics(kafkaTopicsProcessorConfiguration))
-    .map { message =>
-      logger.debug(message.record.value)
-      message.committableOffset.commitScaladsl()
+    .mapAsync(1) { message =>
+
+      logger.debug(s"ProcessorService: ${message.record.value}")
+
+      this.processOptionRecordFile(message.record.value)
+        .map { _ =>
+          message.committableOffset.commitScaladsl()
+        }
     }
     .runWith(Sink.ignore)
+
+  private def processOptionRecordFile(dataFilePath: String) = {
+
+    logger.debug(s"processOptionRecordFile: $dataFilePath")
+
+    FileIO.fromPath(Paths.get(dataFilePath))
+      .fold(ByteString()) {
+        _ ++ _
+      }
+      .mapConcat { data =>
+
+        val html = data.utf8String
+
+//        logger.debug(s"$html")
+
+        Jsoup.parse(html)
+          .getElementsByClass("table_c")
+          .get(0)
+          .select("tr[bgcolor=ivory]")
+          .toArray
+          .map { case tr: Element =>
+
+            tr.select("td")
+              .toArray
+              .map { case td: Element =>
+
+                td
+              }
+          }
+          .toList
+      }
+      .runWith(Sink.ignore)
+  }
 
 }

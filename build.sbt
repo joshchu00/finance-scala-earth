@@ -15,6 +15,6 @@ libraryDependencies ++= Seq(
   "org.jsoup" % "jsoup" % "1.10.3"
 )
 
-dockerRepository := Some("joshchu00")
-dockerBaseImage := "openjdk:8u121-jre"
+dockerRepository := Some("10.138.0.3:25000")
+dockerBaseImage := "openjdk:8u161-jre"
 dockerExposedPorts in Docker := Seq(9000, 9443)
