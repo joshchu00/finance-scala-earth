@@ -16,5 +16,5 @@ libraryDependencies ++= Seq(
 )
 
 dockerRepository := Some("10.138.0.3:25000")
-dockerBaseImage := "openjdk:8u161-jre"
+dockerBaseImage := "openjdk:8u141-jre"
 dockerExposedPorts in Docker := Seq(9000, 9443)
