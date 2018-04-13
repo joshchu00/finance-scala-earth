@@ -1,4 +1,4 @@
-name := "earth"
+name := "finance-scala-earth"
 
 version := "1.0.0-SNAPSHOT"
 
