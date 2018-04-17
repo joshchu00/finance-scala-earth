@@ -1,11 +1,13 @@
 package controllers
 
-import play.api.mvc.{Action, Controller}
+import javax.inject.Inject
+
+import play.api.mvc.{AbstractController, ControllerComponents}
 
 /**
   * Created by joshchu999 on 12/14/16.
   */
-class HomeController extends Controller {
+class HomeController @Inject() (cc: ControllerComponents) extends AbstractController(cc) {
 
     def index = Action {
       Ok("Hello World!")
