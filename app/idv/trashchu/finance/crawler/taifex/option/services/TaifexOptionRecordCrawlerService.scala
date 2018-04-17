@@ -21,13 +21,13 @@ class TaifexOptionRecordCrawlerService @Inject()(configuration: Configuration, i
   override val logger: Logger = Logger(this.getClass())
 
   // configuration
-  val environmentConfiguration = configuration.getString("finance.environment").getOrElse("")
+  val environmentConfiguration = configuration.get[String]("finance.environment")
   logger.debug(s"environment = $environmentConfiguration")
 
-  val kafkaTopicsProcessorConfiguration = configuration.getString("finance.earth.kafka.topics.processor").getOrElse("")
+  val kafkaTopicsProcessorConfiguration = configuration.get[String]("finance.kafka.topics.processor")
   logger.debug(s"topicProcessor = $kafkaTopicsProcessorConfiguration")
 
-  val dataBaseDirectoryConfiguration = configuration.getString("finance.earth.data.base.directory").getOrElse("")
+  val dataBaseDirectoryConfiguration = configuration.get[String]("finance.earth.data.base.directory")
   logger.debug(s"dataBaseDirectory = $dataBaseDirectoryConfiguration")
 
   // actor

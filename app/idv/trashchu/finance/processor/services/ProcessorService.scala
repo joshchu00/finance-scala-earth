@@ -30,7 +30,7 @@ class ProcessorService @Inject()(configuration: Configuration, implicit val syst
 
   val logger: Logger = Logger(this.getClass())
 
-  val kafkaTopicsProcessorConfiguration = configuration.getString("finance.earth.kafka.topics.processor").getOrElse("")
+  val kafkaTopicsProcessorConfiguration = configuration.get[String]("finance.kafka.topics.processor")
 
   logger.debug(s"topicProcessor = $kafkaTopicsProcessorConfiguration")
 
