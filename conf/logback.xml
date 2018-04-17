@@ -2,9 +2,9 @@
 <configuration>
 
   <appender name="serviceRollingFileAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
-    <file>/var/log/finance/earth/play.log</file>
+    <file>/var/log/finance/scala/earth/play.log</file>
     <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-      <fileNamePattern>/var/log/finance/earth/play.%d{yyyy-MM-dd, UTC}.log</fileNamePattern>
+      <fileNamePattern>/var/log/finance/scala/earth/play.%d{yyyy-MM-dd, UTC}.log</fileNamePattern>
       <maxHistory>7</maxHistory>
     </rollingPolicy>
     <encoder>
