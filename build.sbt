@@ -9,7 +9,7 @@ val akkaVersion = "2.5.12"
 lazy val earth = (project in file(".")).enablePlugins(PlayScala)
 
 libraryDependencies ++= Seq(
-  cache,
+  ehcache,
   guice,
   ws,
   "com.typesafe.akka" %% "akka-stream-kafka" % "0.16",
