@@ -4,7 +4,7 @@ import com.google.inject.AbstractModule
 import idv.trashchu.finance.crawler.taifex.option.services.TaifexOptionRecordCrawlerService
 
 /**
-  * Created by joshchu999 on 5/4/17.
+  * Created by joshchu00 on 5/4/17.
   */
 class Module extends AbstractModule {
 

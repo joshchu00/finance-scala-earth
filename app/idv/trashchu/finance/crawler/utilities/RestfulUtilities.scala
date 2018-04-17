@@ -7,7 +7,7 @@ import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
 
 /**
-  * Created by joshchu999 on 5/4/17.
+  * Created by joshchu00 on 5/4/17.
   */
 object RestfulUtilities {
 

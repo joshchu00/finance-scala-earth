@@ -19,7 +19,7 @@ import scala.concurrent.ExecutionContext
 import scala.concurrent.duration.FiniteDuration
 
 /**
-  * Created by joshchu999 on 5/4/17.
+  * Created by joshchu00 on 5/4/17.
   */
 trait Crawler {
 

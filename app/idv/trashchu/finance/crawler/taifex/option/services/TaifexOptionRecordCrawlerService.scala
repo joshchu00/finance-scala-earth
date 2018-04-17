@@ -12,7 +12,7 @@ import play.api.{Configuration, Logger}
 import scala.concurrent.ExecutionContext
 
 /**
-  * Created by joshchu999 on 5/4/17.
+  * Created by joshchu00 on 5/4/17.
   */
 @Singleton
 class TaifexOptionRecordCrawlerService @Inject()(configuration: Configuration, implicit val system: ActorSystem, implicit val ec: ExecutionContext, ws: WSClient) extends Crawler {

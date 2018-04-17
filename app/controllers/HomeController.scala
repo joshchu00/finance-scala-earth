@@ -5,7 +5,7 @@ import javax.inject.Inject
 import play.api.mvc.{AbstractController, ControllerComponents}
 
 /**
-  * Created by joshchu999 on 12/14/16.
+  * Created by joshchu00 on 12/14/16.
   */
 class HomeController @Inject() (cc: ControllerComponents) extends AbstractController(cc) {
 

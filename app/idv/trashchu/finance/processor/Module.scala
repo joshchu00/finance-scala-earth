@@ -4,7 +4,7 @@ import com.google.inject.AbstractModule
 import idv.trashchu.finance.processor.services.ProcessorService
 
 /**
-  * Created by joshchu999 on 6/13/17.
+  * Created by joshchu00 on 6/13/17.
   */
 class Module extends AbstractModule {
 

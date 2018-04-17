@@ -5,7 +5,7 @@ import java.io.{BufferedWriter, File, FileWriter}
 import play.api.Logger
 
 /**
-  * Created by joshchu999 on 6/7/17.
+  * Created by joshchu00 on 6/7/17.
   */
 object FileUtilities {
 
