@@ -17,6 +17,7 @@ import org.jsoup.Jsoup
 import org.jsoup.nodes.{Document, Element}
 import org.jsoup.select.Elements
 import play.api.{Configuration, Logger}
+import play.api.libs.ws.WSClient
 
 import scala.concurrent.ExecutionContext
 import scala.concurrent.duration._
