@@ -1,19 +1,20 @@
 node {
     def earthImage
 
-    stage('Pull') {
+    stage('Git Pull') {
         git url: 'https://github.com/joshchu00/finance-scala-earth.git', branch: 'develop'
     }
-    stage('Docker Build') {
+    stage('sbt Build') {
         sh "${tool name: 'sbt-1.1.4', type: 'org.jvnet.hudson.plugins.SbtPluginBuilder$SbtInstallation'}/bin/sbt docker:stage"
-
+    }
+    stage('Docker Build') {
         docker.withTool('docker-latest') {
-            earthImage = docker.build('finance-scala-earth', 'target/docker/stage')
+            earthImage = docker.build('docker.io/joshchu00/finance-scala-earth', 'target/docker/stage')
         }
     }
     stage('Docker Push') {
         docker.withTool('docker-latest') {
-            docker.withRegistry('https://127.0.0.1:5000') {
+            docker.withRegistry('', 'DockerHub') {
                 earthImage.push()
             }
         }
